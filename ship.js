@@ -1,20 +1,28 @@
-class Ship {
-	constructor(length) {
-		this.length = length
-		this.hits = []
-		this.sunk = false
+const Ship = (name, length) => {
+	const stats = {
+		id: name,
+		length: length,
+		hits: [],
+		sunk: false,
 	}
 
-	hit(amount) {
-		this.hits.push(amount)
+	function hit(amount) {
+		stats.hits.push(amount)
+		isSunk()
 	}
 
-	isSunk() {
-		if (this.hits.length === this.length) {
-			this.sunk = true
-			return this.sunk
+	function getHits() {
+		return stats.hits
+	}
+
+	function isSunk() {
+		if (stats.hits.length === stats.length) {
+			stats.sunk = true
+			return stats.sunk
 		}
 	}
+
+	return { stats, hit, getHits, isSunk }
 }
 
 module.exports = Ship
