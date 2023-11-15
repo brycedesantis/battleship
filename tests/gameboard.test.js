@@ -1,4 +1,5 @@
 const Gameboard = require("../gameboard")
+const Player = require("../player")
 const Ship = require("../ship")
 
 describe("Gameboard creation", () => {
@@ -144,4 +145,11 @@ test("Return true if all ships sunk", () => {
 	destoyer.hit(1)
 	destoyer.hit(1)
 	expect(gameboard.allSunk()).toEqual(true)
+})
+
+test("ship can be placed from fleet", () => {
+	const gameboard = Gameboard()
+	const person = Player("player 1")
+	gameboard.placeShip(person.fleet.Carrier, 1, 1)
+	expect(gameboard.atPosition(1, 1)).toHaveProperty("ship.stats.id", "carrier")
 })
