@@ -5,6 +5,12 @@ const Gameboard = () => {
 		.fill("ocean")
 		.map(() => Array(10).fill("ocean"))
 
+	let deployedShips = []
+
+	function getOcean() {
+		return oceanTiles
+	}
+
 	function atPosition(outer, inner) {
 		return oceanTiles[outer][inner]
 	}
@@ -18,6 +24,7 @@ const Gameboard = () => {
 				tiles[outer][inner + i] = { ship, index: i }
 			}
 		}
+		deployedShips.push(ship)
 	}
 
 	function receiveAttack(outer, inner) {
@@ -32,11 +39,17 @@ const Gameboard = () => {
 		return oceanTiles[outer][inner]
 	}
 
+	function allSunk() {
+		return deployedShips.every((ship) => ship.isSunk())
+	}
+
 	return {
 		oceanTiles,
+		getOcean,
 		atPosition,
 		placeShip,
 		receiveAttack,
+		allSunk,
 	}
 }
 
