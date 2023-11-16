@@ -1,5 +1,5 @@
-const Player = require("../player")
-const Gameboard = require("../gameboard")
+const Player = require("../factories/player")
+const Gameboard = require("../factories/gameboard")
 
 describe("Player functions", () => {
 	const person = Player("player 1")

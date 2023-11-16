@@ -1,8 +1,9 @@
-const Ship = require("../ship")
+const Ship = require("../factories/ship")
 
 test("Properly returns object", () => {
-	let ship = Ship(4)
+	let ship = Ship("ship", 4)
 	expect(ship.stats).toMatchObject({
+		id: "ship",
 		length: 4,
 		hits: [],
 		sunk: false,
@@ -10,8 +11,9 @@ test("Properly returns object", () => {
 })
 
 test("Returns object without setting sunk", () => {
-	let ship = Ship(5)
+	let ship = Ship("ship", 5)
 	expect(ship.stats).toMatchObject({
+		id: "ship",
 		length: 5,
 		hits: [],
 		sunk: false,
@@ -19,9 +21,10 @@ test("Returns object without setting sunk", () => {
 })
 
 test("Ship takes damage", () => {
-	const ship = Ship(4)
+	const ship = Ship("ship", 4)
 	ship.hit(1)
 	expect(ship.stats).toMatchObject({
+		id: "ship",
 		length: 4,
 		hits: [1],
 		sunk: false,
@@ -29,14 +32,14 @@ test("Ship takes damage", () => {
 })
 
 test("Ship has sunk", () => {
-	const ship = Ship(3)
+	const ship = Ship("ship", 3)
 	ship.hit(1)
 	ship.hit(1)
 	ship.hit(1)
 	expect(ship.isSunk()).toBe(true)
 })
 test("Get hits returns array", () => {
-	const ship = Ship(4)
+	const ship = Ship("ship", 4)
 	ship.hit(1)
 	ship.hit(1)
 	expect(ship.getHits()).toEqual([1, 1])

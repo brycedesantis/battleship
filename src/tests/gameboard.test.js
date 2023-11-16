@@ -1,6 +1,6 @@
-const Gameboard = require("../gameboard")
-const Player = require("../player")
-const Ship = require("../ship")
+const Gameboard = require("../factories/gameboard")
+const Player = require("../factories/player")
+const Ship = require("../factories/ship")
 
 describe("Gameboard creation", () => {
 	const gameboard = Gameboard()
