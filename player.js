@@ -16,8 +16,14 @@ const Player = (type = "computer") => {
 	}
 
 	function randomAttack(board) {
-		let randomNum = Math.floor(Math.random() * 10)
-		board.receiveAttack(randomNum, randomNum)
+		let y = Math.floor(Math.random() * 10)
+		let x = Math.floor(Math.random() * 10)
+		const space = board.getOcean()[y][x]
+		if (space === "miss" || space === "hit") {
+			randomAttack(board)
+		} else {
+			board.receiveAttack(y, x)
+		}
 	}
 
 	return { name, fleet, attack, randomAttack }

@@ -6,6 +6,18 @@ const Ship = (name, length) => {
 		sunk: false,
 	}
 
+	let direction = "horizontal"
+
+	function getDirection() {
+		return direction
+	}
+
+	function changeDirection() {
+		direction === "horizontal"
+			? (direction = "vertical")
+			: (direction = "horizontal")
+	}
+
 	function hit(amount) {
 		stats.hits.push(amount)
 		isSunk()
@@ -22,7 +34,7 @@ const Ship = (name, length) => {
 		}
 	}
 
-	return { stats, hit, getHits, isSunk }
+	return { stats, hit, getHits, isSunk, getDirection, changeDirection }
 }
 
 module.exports = Ship

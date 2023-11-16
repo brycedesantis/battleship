@@ -26,6 +26,6 @@ describe("Player functions", () => {
 	})
 
 	test("Player to access fleet", () => {
-		expect(person.fleet.carrier).toHaveProperty("stats.id", "carrier")
+		expect(person.fleet.Carrier).toHaveProperty("stats.id", "carrier")
 	})
 })

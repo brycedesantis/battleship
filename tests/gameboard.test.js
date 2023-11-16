@@ -16,7 +16,8 @@ describe("Ship placement in ocean", () => {
 	const ship = Ship("mid", 3)
 
 	test("Can place ship vertically using Ship factory", () => {
-		gameboard.placeShip(ship, 1, 2, true)
+		ship.changeDirection()
+		gameboard.placeShip(ship, 1, 2)
 		expect(gameboard.atPosition(3, 2)).toHaveProperty("ship.stats.id", "mid")
 	})
 
@@ -26,6 +27,7 @@ describe("Ship placement in ocean", () => {
 	})
 
 	test("Place multiple ships", () => {
+		const gameboard = Gameboard()
 		const ship1 = Ship("small", 2)
 		const ship2 = Ship("second", 2)
 		gameboard.placeShip(ship1, 1, 1)
@@ -35,15 +37,19 @@ describe("Ship placement in ocean", () => {
 	})
 
 	test("Place multiple ships vertically", () => {
+		const gameboard = Gameboard()
 		const ship1 = Ship("small", 2)
 		const ship2 = Ship("second", 2)
-		gameboard.placeShip(ship1, 1, 0, true)
-		gameboard.placeShip(ship2, 1, 2, true)
+		ship1.changeDirection()
+		ship2.changeDirection()
+		gameboard.placeShip(ship1, 1, 0)
+		gameboard.placeShip(ship2, 1, 2)
 		expect(gameboard.atPosition(2, 0)).toHaveProperty("ship.stats.id", "small")
 		expect(gameboard.atPosition(1, 2)).toHaveProperty("ship.stats.id", "second")
 	})
 
 	describe("Placement as objects", () => {
+		const gameboard = Gameboard()
 		const ship1 = Ship("small", 2)
 		const ship2 = Ship("second", 2)
 
@@ -94,6 +100,7 @@ describe("Attacking functionality", () => {
 	})
 
 	test("Attack sinks ship", () => {
+		const gameboard = Gameboard()
 		const ship = Ship("small", 2)
 		gameboard.placeShip(ship, 1, 1)
 		gameboard.receiveAttack(1, 1)
@@ -152,4 +159,32 @@ test("ship can be placed from fleet", () => {
 	const person = Player("player 1")
 	gameboard.placeShip(person.fleet.Carrier, 1, 1)
 	expect(gameboard.atPosition(1, 1)).toHaveProperty("ship.stats.id", "carrier")
+})
+
+test("Only one ship can be placed in a certain spot", () => {
+	const gameboard = Gameboard()
+	const person = Player("player 1")
+	gameboard.placeShip(person.fleet.Carrier, 1, 1)
+	gameboard.placeShip(person.fleet.Destroyer, 1, 1)
+	expect(gameboard.atPosition(1, 1)).toHaveProperty("ship.stats.id", "carrier")
+})
+
+test("Only one ship can be placed in a certain spot when different directions", () => {
+	const gameboard = Gameboard()
+	const person = Player("player 1")
+	gameboard.placeShip(person.fleet.Carrier, 1, 1)
+	person.fleet.Destroyer.changeDirection()
+	gameboard.placeShip(person.fleet.Destroyer, 1, 1)
+	expect(gameboard.atPosition(1, 1)).toHaveProperty("ship.stats.id", "carrier")
+})
+
+test("Determine if all ships have been place", () => {
+	const gameboard = Gameboard()
+	const person = Player("player")
+	gameboard.placeShip(person.fleet.Carrier, 0, 0)
+	gameboard.placeShip(person.fleet.Battleship, 1, 1)
+	gameboard.placeShip(person.fleet.Destroyer, 2, 2)
+	gameboard.placeShip(person.fleet.Submarine, 3, 3)
+	gameboard.placeShip(person.fleet.Patrol, 4, 4)
+	expect(gameboard.allPlaced()).toBe(true)
 })
