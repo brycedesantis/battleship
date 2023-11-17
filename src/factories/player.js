@@ -1,6 +1,6 @@
-const Ship = require("./ship")
+import Ship from "./ship"
 
-const Player = (type = "computer") => {
+function Player(type = "computer") {
 	const name = type
 
 	const fleet = {
@@ -29,4 +29,4 @@ const Player = (type = "computer") => {
 	return { name, fleet, attack, randomAttack }
 }
 
-module.exports = Player
+export default Player

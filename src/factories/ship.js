@@ -37,4 +37,4 @@ const Ship = (name, length) => {
 	return { stats, hit, getHits, isSunk, getDirection, changeDirection }
 }
 
-module.exports = Ship
+export default Ship

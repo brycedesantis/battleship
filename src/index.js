@@ -1,1 +1,6 @@
-console.log("hello")
+import Game from "./factories/game"
+import "./style.css"
+
+const game = Game()
+
+game.renderBoard()
