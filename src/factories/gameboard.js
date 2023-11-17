@@ -2,7 +2,7 @@ import Player from "./player"
 import Ship from "./ship"
 
 const Gameboard = () => {
-	const oceanTiles = Array(10)
+	let oceanTiles = Array(10)
 		.fill("ocean")
 		.map(() => Array(10).fill("ocean"))
 
@@ -79,14 +79,41 @@ const Gameboard = () => {
 		return deployedShips.length === Object.keys(Player().fleet).length
 	}
 
+	function autoPlace(ship) {
+		let y = Math.floor(Math.random() * 10)
+		let x = Math.floor(Math.random() * 10)
+		let orientation = Math.random() > 0.5
+		if (orientation) {
+			ship.changeDirection()
+		}
+		let placed = placeShip(ship, y, x)
+		if (!placed) {
+			autoPlace(ship)
+		}
+	}
+
+	function autoPlaceFleet(fleet) {
+		for (const ship in fleet) {
+			autoPlace(fleet[ship])
+		}
+	}
+
+	function resetOcean() {
+		oceanTiles = Array(10)
+			.fill("ocean")
+			.map(() => Array(10).fill("ocean"))
+		deployedShips = []
+	}
+
 	return {
-		oceanTiles,
 		getOcean,
 		atPosition,
 		placeShip,
 		receiveAttack,
 		allSunk,
 		allPlaced,
+		autoPlaceFleet,
+		resetOcean,
 	}
 }
 

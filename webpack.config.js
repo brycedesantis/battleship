@@ -15,12 +15,13 @@ module.exports = {
 			filename: "index.html",
 			inject: "body",
 		}),
+		new MiniCssExtractPlugin(),
 	],
 	module: {
 		rules: [
 			{
 				test: /\.css$/i,
-				use: [MiniCssExtractPlugin, "style-loader", "css-loader"],
+				use: [MiniCssExtractPlugin.loader, "css-loader"],
 			},
 		],
 	},

@@ -1,4 +1,4 @@
-const Game = require("../factories/game")
+import Game from "../factories/game"
 
 describe("Game Functionality", () => {
 	const game = Game()

@@ -1,5 +1,6 @@
 import Player from "./player"
 import Gameboard from "./gameboard"
+import renderFunctions from "../render/render"
 
 function Game() {
 	const player1 = Player("player 1")
@@ -12,26 +13,26 @@ function Game() {
 	const cpu = document.querySelector(".computer-grid")
 
 	function renderBoard() {
-		makeBoard(p1B, player1Board)
-		makeBoard(cpu, player1Board)
+		renderFunctions().makeBoard(p1B, player1Board, player1.fleet)
+		renderFunctions().makeBoard(cpu, player2Board, player2.fleet)
 	}
 
-	function makeBoard(target, gameboard) {
-		const board = gameboard.getOcean()
-		const boardLength = board.length
-
-		for (let i = 0; i < boardLength; i++) {
-			for (let j = 0; j < boardLength; j++) {
-				const div = document.createElement("div")
-				// div.textContent = board[i][j]
-				div.className = "gamespace"
-				div.id = `position-${i}-${j}`
-				target.append(div)
-			}
-		}
+	function autoPlace() {
+		player1Board.resetOcean()
+		player2Board.resetOcean()
+		player1Board.autoPlaceFleet(player1.fleet)
+		player2Board.autoPlaceFleet(player2.fleet)
+		renderBoard()
 	}
 
-	return { player1, player2, player1Board, player2Board, renderBoard }
+	return {
+		player1,
+		player2,
+		player1Board,
+		player2Board,
+		renderBoard,
+		autoPlace,
+	}
 }
 
 export default Game

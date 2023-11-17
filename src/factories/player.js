@@ -8,7 +8,7 @@ function Player(type = "computer") {
 		Battleship: Ship("battleship", 4),
 		Destroyer: Ship("destroyer", 3),
 		Submarine: Ship("submarine", 3),
-		Patrol: Ship("patrol boat", 2),
+		Patrol: Ship("patrol", 2),
 	}
 
 	function attack(outer, inner, board) {

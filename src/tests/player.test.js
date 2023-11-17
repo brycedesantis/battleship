@@ -1,5 +1,5 @@
-const Player = require("../factories/player")
-const Gameboard = require("../factories/gameboard")
+import Player from "../factories/player"
+import Gameboard from "../factories/gameboard"
 
 describe("Player functions", () => {
 	const person = Player("player 1")

@@ -3,4 +3,4 @@ import "./style.css"
 
 const game = Game()
 
-game.renderBoard()
+game.autoPlace()

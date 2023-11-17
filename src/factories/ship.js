@@ -1,21 +1,20 @@
-const Ship = (name, length) => {
+function Ship(name, length) {
 	const stats = {
 		id: name,
 		length: length,
 		hits: [],
 		sunk: false,
+		direction: "horizontal",
 	}
 
-	let direction = "horizontal"
-
 	function getDirection() {
-		return direction
+		return stats.direction
 	}
 
 	function changeDirection() {
-		direction === "horizontal"
-			? (direction = "vertical")
-			: (direction = "horizontal")
+		stats.direction === "horizontal"
+			? (stats.direction = "vertical")
+			: (stats.direction = "horizontal")
 	}
 
 	function hit(amount) {

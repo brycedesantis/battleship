@@ -1,4 +1,4 @@
-const Ship = require("../factories/ship")
+import Ship from "../factories/ship"
 
 test("Properly returns object", () => {
 	let ship = Ship("ship", 4)
