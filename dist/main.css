@@ -27,6 +27,15 @@
 
 .computer-grid > .gamesquare {
 	cursor: pointer;
+	background-color: unset;
+}
+
+.gamesquare.miss {
+	background-color: grey;
+}
+
+.gamesquare.hit {
+	background-color: crimson;
 }
 
 .carrier {

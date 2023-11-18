@@ -25,6 +25,26 @@ function Game() {
 		renderBoard()
 	}
 
+	function attackBoard(click) {
+		let tile = click.target
+		// player1.attack(tile.dataset.y, tile.dataset.x, player2Board)
+		if (tile.classList.contains("gamesquare")) {
+			const y = tile.dataset.y
+			const x = tile.dataset.x
+
+			const oceanTile = player2Board.getOcean()[y][x]
+			if (oceanTile !== "miss" && oceanTile !== "hit") {
+				player1.attack(y, x, player2Board)
+
+				renderBoard()
+			}
+		}
+	}
+
+	function clickEvents() {
+		cpu.addEventListener("click", attackBoard)
+	}
+
 	return {
 		player1,
 		player2,
@@ -32,6 +52,7 @@ function Game() {
 		player2Board,
 		renderBoard,
 		autoPlace,
+		clickEvents,
 	}
 }
 
