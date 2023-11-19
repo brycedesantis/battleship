@@ -17,6 +17,10 @@ function Game() {
 		renderFunctions().makeBoard(cpu, player2Board, player2.fleet)
 	}
 
+	function renderShipYard() {
+		renderFunctions().renderShipYard(player1.fleet)
+	}
+
 	function autoPlace() {
 		player1Board.resetOcean()
 		player2Board.resetOcean()
@@ -66,6 +70,7 @@ function Game() {
 		renderBoard,
 		autoPlace,
 		clickEvents,
+		renderShipYard,
 	}
 }
 

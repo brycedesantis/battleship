@@ -10,10 +10,26 @@
 		<div class="game-over-screen">
 			<div class="end-screen"></div>
 		</div>
+		<form action="">
+			<select name="ship-name" id="ship-name">
+				<option value=""></option>
+				<option value="Carrier">Carrier</option>
+				<option value="Battleship">Battleship</option>
+				<option value="Destoryer">Destoryer</option>
+				<option value="Submarine">Submarine</option>
+				<option value="Patrol">Patrol</option>
+			</select>
+			<label for="location"></label>
+			<input type="text" id="location" />
+			<button>Place ship</button>
+		</form>
 		<main class="main">
 			<div class="boards">
 				<h1>Player</h1>
 				<div class="player-grid"></div>
+			</div>
+			<div class="ship-yard">
+				<h2>Shipyard</h2>
 			</div>
 			<div class="boards">
 				<h1>Computer</h1>

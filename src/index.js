@@ -6,3 +6,5 @@ const game = Game()
 game.autoPlace()
 
 game.clickEvents()
+
+game.renderShipYard()
