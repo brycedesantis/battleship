@@ -35,8 +35,21 @@ function Game() {
 			const oceanTile = player2Board.getOcean()[y][x]
 			if (oceanTile !== "miss" && oceanTile !== "hit") {
 				player1.attack(y, x, player2Board)
-
+				player2.randomAttack(player1Board)
 				renderBoard()
+			}
+
+			if (player2Board.allSunk() || player1Board.allSunk()) {
+				let winner = player2Board.allSunk() ? player1.name : player2.name
+				const gameOverScreen = document.querySelector(".game-over-screen")
+				const endScreen = document.querySelector(".end-screen")
+				const main = document.querySelector(".main")
+				main.classList.add("blur")
+				gameOverScreen.style.display = "flex"
+				endScreen.innerHTML = `
+				<h1>GAME OVER</h1>
+				<h3>${winner} WINS!</h3>
+				`
 			}
 		}
 	}
