@@ -23,16 +23,39 @@ body {
 	filter: blur(5px);
 }
 
-.main {
+form {
+	text-align: center;
+}
+
+.game {
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
-	height: 100vh;
+	height: 90vh;
 	width: 100vw;
 }
 
 .boards {
 	text-align: center;
+}
+
+.boards > h1,
+.x-axis > h1 {
+	margin-bottom: 0;
+}
+
+.x-axis {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.axis {
+	display: flex;
+	align-items: center;
+}
+
+.y-axis > h1 {
+	padding-bottom: 3px;
 }
 
 .ship-yard {
