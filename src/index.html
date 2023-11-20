@@ -8,14 +8,17 @@
 	</head>
 	<body>
 		<div class="game-over-screen">
-			<div class="end-screen"></div>
+			<div class="end-screen">
+				<h1>GAME OVER</h1>
+				<h3 id="winner-message"></h3>
+				<button id="restart-game">Restart</button>
+			</div>
 		</div>
 		<div class="main">
 			<form action="">
 				<h1>BATTLESHIP</h1>
 				<label for="ship-name">Ship Name</label>
 				<select name="ship-name" id="ship-name">
-					<option value=""></option>
 					<option value="Carrier">Carrier</option>
 					<option value="Battleship">Battleship</option>
 					<option value="Destroyer">Destroyer</option>
@@ -31,7 +34,7 @@
 					<option value="horizontal">Horizontal</option>
 					<option value="vertical">Vertical</option>
 				</select>
-				<button>Place ship</button>
+				<button id="place-ship-btn">Place ship</button>
 			</form>
 			<main class="game">
 				<div class="boards">

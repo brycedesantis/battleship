@@ -24,7 +24,6 @@ function Game() {
 	function autoPlace() {
 		player1Board.resetOcean()
 		player2Board.resetOcean()
-		// player1Board.autoPlaceFleet(player1.fleet)
 		player2Board.autoPlaceFleet(player2.fleet)
 		renderBoard()
 	}
@@ -47,14 +46,11 @@ function Game() {
 				if (player2Board.allSunk() || player1Board.allSunk()) {
 					let winner = player2Board.allSunk() ? player1.name : player2.name
 					const gameOverScreen = document.querySelector(".game-over-screen")
-					const endScreen = document.querySelector(".end-screen")
+					const winnerMessage = document.querySelector("#winner-message")
 					const main = document.querySelector(".main")
 					main.classList.add("blur")
 					gameOverScreen.style.display = "flex"
-					endScreen.innerHTML = `
-					<h1>GAME OVER</h1>
-					<h3>${winner} WINS!</h3>
-					`
+					winnerMessage.textContent = `${winner} WINS!`
 				}
 			}
 		}
@@ -79,12 +75,35 @@ function Game() {
 		renderBoard()
 	}
 
-	const button = document.querySelector("button")
+	function restartGame() {
+		const gameOverScreen = document.querySelector(".game-over-screen")
+		const main = document.querySelector(".main")
+
+		gameOverScreen.style.display = "none"
+		main.classList.remove("blur")
+
+		for (const ship in player1.fleet) {
+			player1.fleet[ship].stats.sunk = false
+			player1.fleet[ship].stats.hits = []
+			player2.fleet[ship].stats.sunk = false
+			player2.fleet[ship].stats.hits = []
+		}
+
+		autoPlace()
+		clickEvents()
+	}
+
+	const shipBtn = document.querySelector("#place-ship-btn")
+	const restartBtn = document.querySelector("#restart-game")
 	function clickEvents() {
 		cpu.addEventListener("click", attackBoard)
-		button.addEventListener("click", () => {
+		shipBtn.addEventListener("click", () => {
 			event.preventDefault()
 			placeOnBoard()
+		})
+		restartBtn.addEventListener("click", () => {
+			event.preventDefault()
+			restartGame()
 		})
 	}
 

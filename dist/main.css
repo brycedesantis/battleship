@@ -1,5 +1,7 @@
 body {
 	overflow: hidden;
+	background-color: #02367b;
+	color: #b1bfd2;
 }
 
 .game-over-screen {
@@ -16,7 +18,14 @@ body {
 .end-screen {
 	margin: auto;
 	text-align: center;
-	color: wheat;
+	font-size: 3em;
+}
+
+#restart-game {
+	font-size: 0.4em;
+	height: 55px;
+	width: 100px;
+	cursor: pointer;
 }
 
 .blur {
@@ -25,6 +34,21 @@ body {
 
 form {
 	text-align: center;
+	color: #b1bfd2;
+}
+
+form > select,
+input,
+button {
+	background-color: #b1bfd2;
+	border: none;
+	border-radius: 10px;
+	height: 1.4em;
+	width: 90px;
+}
+
+form > input {
+	padding-left: 10px;
 }
 
 .game {
@@ -59,7 +83,7 @@ form {
 }
 
 .ship-yard {
-	border: 1px solid black;
+	border: 1px solid #6f6f34c4;
 	height: 50vh;
 	width: 15vw;
 	text-align: center;
@@ -89,7 +113,8 @@ form {
 }
 
 .gamesquare {
-	border: 1px solid black;
+	border: 1px solid #6f6f34c4;
+	border-radius: 5px;
 	height: 50px;
 	width: 50px;
 	padding: 5px;
@@ -102,26 +127,26 @@ form {
 }
 
 .gamesquare.miss {
-	background-color: grey;
+	background-color: #d0ccd0;
 }
 
 .gamesquare.hit {
-	background-color: crimson;
+	background-color: #953636;
 }
 
 .carrier {
-	background-color: rgba(196, 36, 36, 0.671);
+	background-color: #ffe7a0;
 }
 .destroyer {
-	background-color: aqua;
+	background-color: #c42424;
 }
 .battleship {
-	background-color: blue;
+	background-color: #9b0a0a;
 }
 .submarine {
-	background-color: green;
+	background-color: #183b06;
 }
 .patrol {
-	background-color: purple;
+	background-color: #54125b;
 }
 
